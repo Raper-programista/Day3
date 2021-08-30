@@ -7,6 +7,7 @@ public class List{
 
 	static{
 		initList();
+		newInitList();
 		initNumbers();
 	}
 
@@ -39,6 +40,18 @@ public class List{
 			System.out.println(e);
 		}
 
+	}
+	
+	private static void newInitList(){
+	    try(BufferedReader reader = new BufferedReader(new FileReader("plik.txt"))){
+	        while(reader.ready()){
+	            String s = reader.readLine().replaceAll( " +", " ").trim();
+	            numbersList.add(s);
+	        }
+	    }catch(IOException e){
+	        System.out.println(e);
+	    }
+	    
 	}
 
 	private static void initNumbers(){
@@ -75,4 +88,13 @@ public class List{
 		}
 		return s;
 	}
+
+	@Override
+	public String toString(){
+		String s="";
+		for(String ln : numbersList)
+			s+=ln+'\n';
+		return s;
+	}
+
 }
