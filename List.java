@@ -6,40 +6,8 @@ public class List{
 	private static int[][] numbers;
 
 	static{
-		initList();
 		newInitList();
 		initNumbers();
-	}
-
-	private static void initList(){
-
-		try(BufferedReader reader = new BufferedReader(new FileReader("plik.txt"))){
-			
-			char last = ' ';
-			String line ="";
-			
-			while(reader.ready()){
-			
-				int read = reader.read();
-				char now = (char) read;
-
-				if(now == '\n'){
-
-					numbersList.add(line);
-
-					line = "";
-					last = ' ';
-
-				} else if(!(last==' ' && now==' ') && now!=13){
-					
-					line += ""+(char) now;
-					last = now;
-				}
-			}
-		}catch(IOException e){
-			System.out.println(e);
-		}
-
 	}
 	
 	private static void newInitList(){
@@ -77,16 +45,6 @@ public class List{
 
 	public static int[][] getNumbers(){
 		return numbers;
-	}
-
-	public static String toWrite(){
-		String s = "";
-		for(int[] number : numbers){
-			for(int n : number)
-				s+=""+n+", ";
-			s+='\n';
-		}
-		return s;
 	}
 
 	@Override
